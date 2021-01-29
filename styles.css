@@ -4,21 +4,30 @@
   --tertiary-color: #732706;
   --main-font-color: #222222;
   --secondary-font-color: #ffffff;
-  --header-height: 200px;
+  --header-height: 180px;
   --footer-height: 70px;
   --left-padding: 3rem;
 }
 
+@font-face {
+  font-family: mainFont;
+  src: url(fonts/Big\ Caslon\ Medium.ttf);
+}
+
 body {
   background-color: #ffffff;
+  font-family: mainFont;
+  overflow-x: hidden;
 }
 
 .header-wrapper {
   background-color: var(--main-color);
   height: var(--header-height);
   padding: 1rem var(--left-padding);
-  position: relative;
+  position: fixed;
   width: 100vw;
+  box-shadow: 0px 2px 5px var(--main-font-color);
+  top: 0;
 }
 .header-logo-wrapper {
   background-color: var(--secondary-color);
@@ -29,6 +38,9 @@ body {
   justify-content: center;
   align-items: center;
   transform: rotate(-5deg);
+  position: relative;
+  z-index: 10;
+  box-shadow: 2px 5px 10px var(--main-font-color);
 }
 .header-logo {
   border: 2px dashed var(--main-color);
@@ -55,4 +67,55 @@ body {
 .main-wrapper {
   min-height: calc(100vh - (var(--header-height) + var(--footer-height)));
   max-width: 100vw;
+  margin-top: var(--header-height);
+  padding: 4rem;
+}
+.menu {
+  width: calc(100vw - 240px);
+  height: 40px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: var(--secondary-font-color);
+  display: inline-flex;
+  background-color: var(--tertiary-color);
+}
+
+.menu li {
+  height: inherit;
+}
+.menu li:not(:last-child) {
+  border-right: 3px solid var(--main-color);
+}
+.menu-link {
+  cursor: pointer;
+  height: inherit;
+  padding: 0 2rem;
+  display: inline-flex;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  position: relative;
+}
+.menu-link::after {
+  content: '';
+  width: 100%;
+  height: 0px;
+  background-color: var(--secondary-font-color);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transition: height 0.2s linear;
+}
+.menu-link:hover::after {
+  height: 3px;
+  /* border-bottom: 1px solid var(--secondary-font-color); */
+}
+
+.title {
+  margin: 1rem 0;
+  font-size: 1.2rem;
+}
+.text {
+  margin-bottom: 1.5rem;
 }
