@@ -7,6 +7,7 @@
   --header-height: 180px;
   --footer-height: 70px;
   --left-padding: 3rem;
+  --main-max-width: 1000px;
 }
 
 @font-face {
@@ -18,6 +19,7 @@ body {
   background-color: #ffffff;
   font-family: mainFont;
   overflow-x: hidden;
+  min-height: 100%;
 }
 
 .header-wrapper {
@@ -28,6 +30,9 @@ body {
   width: 100vw;
   box-shadow: 0px 2px 5px var(--main-font-color);
   top: 0;
+}
+.header-logo-link {
+  position: absolute;
 }
 .header-logo-wrapper {
   background-color: var(--secondary-color);
@@ -41,6 +46,12 @@ body {
   position: relative;
   z-index: 10;
   box-shadow: 2px 5px 10px var(--main-font-color);
+  transition: transform .2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow .2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.header-logo-wrapper:hover {
+  transform: scale(1.1) rotate(-10deg);
+  box-shadow: 3px 6px 14px var(--main-font-color);
 }
 .header-logo {
   border: 2px dashed var(--main-color);
@@ -66,9 +77,11 @@ body {
 
 .main-wrapper {
   min-height: calc(100vh - (var(--header-height) + var(--footer-height)));
-  max-width: 100vw;
+  max-width: var(--main-max-width);
   margin-top: var(--header-height);
-  padding: 4rem;
+  padding: 4rem 6rem;
+  display: flex;
+  flex-direction: column;
 }
 .menu {
   width: calc(100vw - 240px);
@@ -111,6 +124,9 @@ body {
   height: 3px;
   /* border-bottom: 1px solid var(--secondary-font-color); */
 }
+.menu-link.active {
+  background-color: var(--secondary-color);
+}
 
 .title {
   margin: 1rem 0;
@@ -118,4 +134,11 @@ body {
 }
 .text {
   margin-bottom: 1.5rem;
+}
+.menu-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  width: 100%;
+
 }
